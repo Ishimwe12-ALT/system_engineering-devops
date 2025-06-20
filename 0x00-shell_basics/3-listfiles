@@ -1,3 +1,4 @@
 #!/bin/bash
-o
-ls -a
+# This script displays the contents of the current directory in long format
+ls -l
+
