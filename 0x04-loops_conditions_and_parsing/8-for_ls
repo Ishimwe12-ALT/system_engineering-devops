@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script lists all non-hidden items in the current directory and prints what follows the first dash
+
+for file in *-*; do
+  # Skip if it’s a directory
+  [ -d "$file" ] && continue
+
+  # Extract substring after the first dash
+  name_after_dash="${file#*-}"
+
+  echo "$name_after_dash"
+done
