@@ -1,2 +1,3 @@
-#!/bin/bash
-echo $$  # Prints the PID of the script
+#!/usr/bin/env bash
+echo $$  # Prints the process ID of the script
+
