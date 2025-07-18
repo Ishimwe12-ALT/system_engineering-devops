@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script displays the PID and name of all processes containing 'bash'
+# This script displays the PID and full path of bash processes
 # shellcheck disable=SC2009
 
 pgrep -a bash | awk '{print $1, $2}'
