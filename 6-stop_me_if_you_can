@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
-# Script that stops the 4-to_infinity_and_beyond process without using kill or killall
-# shellcheck disable=SC2009
-
-pid=$(ps -eo pid,comm | grep '[4]-to_infinity_and_beyond' | awk '{print $1}')
-
+# Stops the 4-to_infinity_and_beyond process using gdb, avoiding kill or killall
+pid=$(ps -eo pid,cmd | grep '[4]-to_infinity_and_beyond' | grep -v grep | awk '{print $1}')
 if [ -n "$pid" ]; then
-  exec </dev/null > /dev/null 2>&1
-  echo "Terminating process $pid"
-  # Send TERM signal using /proc
-  echo "0" > "/proc/$pid/oom_score_adj"
-  exec > "/proc/$pid/fd/0"
+  gdb -q -n -p "$pid" -batch -ex "call (int) exit(0)" > /dev/null 2>&1
 fi
