@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script displays all running processes in a user-friendly, hierarchical format.
+
+# Skip shellcheck
+# shellcheck disable=SC1090,SC2086
+
+ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
