@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Stops the 4-to_infinity_and_beyond process using gdb, avoiding kill or killall
-pid=$(ps -eo pid,cmd | grep '[4]-to_infinity_and_beyond' | grep -v grep | awk '{print $1}')
-if [ -n "$pid" ]; then
-  gdb -q -n -p "$pid" -batch -ex "call (int) exit(0)" > /dev/null 2>&1
-fi
+# Stops the 4-to_infinity_and_beyond process without using kill or killall
+
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+[ -n "$pid" ] && echo 0 > "/proc/$pid/oom_score_adj"
+that's for this path 0x05-processes_and_signals/6-stop_me_if_you_can
